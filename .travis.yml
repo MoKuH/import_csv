@@ -1,26 +1,27 @@
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: dc476be50a11b39727b4ce348a84c0bdeb275ee4  # Set in the settings page of your repository, as a secure variable
+  github_token:
+    secure: Heo5lQAHWBl6uya2Z12xiggIa8WHt0Naza+EnTGtKDFRslQ4Xyo96Yjl43ONfMQY9O+p7MB6ZMxo+OfV2AHklBXgAeBTb73Yh0g4bYGzdTasin/XnZD0VlwVaBQVc8KOp8H4HNlZBiHX4o8mT8+eBv915Lxq2FtWVWj5LUr9lU/sXXs4hj4wATdv49hekXbgDteS5TQmCg+/kVYrZ669HbZf5yYJzVkd5ZIn8o+nR1ACdpDYAmZq5+AYkyVrexTksTsCNlbWNP9+tHM00uDGj5DSruvdHyOfctQPNvIl9STiVgTuxq75OwHReNxkLw4xNuQaxQsWjhpMRJrzDBgigX1kysRcrpnCQwuV3HgLp3tP5+ckm7KOAcGkjW5AxwMwzRgOakMpUvFoFUzYsm6ZySiDai6HZeo6pZRiDE/lyrbbB8f72P4BQk2Ne9+pEqDzrBzUYJiGSuz1obfd4YdSxu1IZIpaZg0Jbbkm3ccU0wFV8JtlpMBQCnZJGbdCVdwtAuLIlqywJ1HeYb3rbR4JhuF0PPVpo54oyRbUWHLJDFe84vRU56f6N56MiCxgVKQRwfjjDmIyvLVMcNzwiWUBOsjBnIo6jIdPDHNbZ+kufODZIXj1Mg4m/h71I+KL/8hZFMmPdVWCryAam/xWgPWDHtoRJBXkBxxpR+o3PDPBwUM=
   keep_history: true
   on:
     branch: master
-
 script:
-  - bundle install
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  - bundle exec rspec
-
+- bundle install
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rspec
 language: ruby
 rvm:
-  - 2.6.2
+- 2.6.2
 addons:
   code_climate:
-    repo_token: c2c740523a0db98fac30576314e1cf53e66e9a9811dfa74ddb41090a5b9a5480
+    repo_token:
+      secure: jzrgWAju3zHRUrbvxe2QAxwQ9AduFl8Qr9crjcD5o/EDzrsV/gxyLNzCqjBv1CbmO12HEZT6GSvQXgFQzXG5rV8khKBaSfCN/NB/U8HhPWm1dG3fMkteiqVoWaKY0NadfKwd+XY0no1rpHwPWQPT4FBVYsDoJI1LoWZM0puH4rNZ1syz94nzzD36B+EnENW+NPZMx60g/yOQMTWO8yE1t+989RzVG8Z+bnUjngCR87JAYa2sW0wyWZXNM32y5xQaeJPSgsli4ITpUHevNQQLw7qS/mBDMMnVgtXthgnebzxOYY7v2vha1CDXM3S6WqNWOScr3I+cVZ8aA/deLaEcztzXwFE4xnE/O/nKfyMWG80vDJc4MT+vdX2hshV6EtAUv1/v3NzroDY3Du3WKIppNtXEFP1v375u7yxFXVlhMCyzN2oH25Y08DXCW1VWRv0JFVp1Gn8GKgYBjRkVH958LRG36Ue43BFb75pJKTBfbv+M3fawsdr+fmzrMz9BxOyU1NxObwo212V7ORBEzxiZsBTHfoXCtdcL4PVpzCy6HQzAE0e6EY4d8sfZnaxtA2C6Yy5uaYjgYnyeA6UtCzH7lMla5UDCCpMtiyfFKw5/AS/1qx625LG9zzG20Py6ylRx8Y7UX/xCcXHRfrb7ac4hZbWcR7N2OjKNu3kRrfv3zCU=
+
 services:
-  - postgresql
+- postgresql
 before_script:
-  - cp config/database.yml.travis config/database.yml
+- cp config/database.yml.travis config/database.yml
 after_success:
-  - bundle exec codeclimate-test-reporter
+- bundle exec codeclimate-test-reporter
