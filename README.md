@@ -33,3 +33,7 @@ rake db:migrate
 
 Imported data are limited to 200 rows 
 
+## Test
+```
+rspec
+```
