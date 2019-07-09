@@ -1,0 +1,22 @@
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: dc476be50a11b39727b4ce348a84c0bdeb275ee4  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
+
+  script:
+    — bundle install
+    — bundle exec rake db:create
+    — bundle exec rake db:migrate
+    — bundle exec rspec
+language: ruby
+rvm:
+  — 2.6.2
+addons:
+  code_climate:
+    repo_token: c2c740523a0db98fac30576314e1cf53e66e9a9811dfa74ddb41090a5b9a5480
+# regular test configuration
+after_success:
+  - bundle exec codeclimate-test-reporter

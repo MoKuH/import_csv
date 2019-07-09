@@ -1,0 +1,12 @@
+-content_for :page_title , "Edit user"
+.row
+	.col-12
+		=simple_form_for(@user, validate: true) do |f|
+			= f.input :name
+			= f.input :date
+			= f.input :number
+			= f.input :description
+			= f.validate
+			.btn-container
+				=link_to "Cancel", user_path(@user), class: "btn btn-secondary  "
+				= f.submit "Confirm", class: "btn btn-primary"

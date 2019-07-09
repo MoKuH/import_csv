@@ -1,0 +1,28 @@
+-content_for :page_title , "All users"
+.row.justify-content-end.mb-2
+	.col-auto
+		=link_to "Insert bulk users",new_user_path, class: 'btn btn-primary ml-auto'
+		=link_to "Download csv",users_path(format: :csv), class: 'btn btn-primary ml-auto'
+.row
+	.col-12
+		%table#user_list.table.table-hover
+			%thead
+				%tr
+					%th Name
+					%th Date
+					%th Number
+					%th Description
+			%tbody
+				- @users.each do |r|
+					%tr{"data-link"=>user_path(r)}
+						%td
+							=r.name
+						%td
+							=r.date
+						%td
+							=r.number
+						%td
+							=r.description
+.row.justify-content-end.mt-2
+	.col-auto
+		=link_to "Insert bulk users",new_user_path, class: 'btn btn-primary ml-auto'

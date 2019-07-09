@@ -1,0 +1,24 @@
+-content_for :page_title , "User id : #{@user.id}"
+.row
+	.col-12
+		%label
+			="Name :"
+		=@user.name
+	.col-12
+		%label
+			="Date :"
+		=@user.date
+	.col-12
+		%label
+			="number : "
+		=@user.number
+
+	.col-12
+		%label
+			="Description : "
+		=@user.description
+.row
+	.col-12
+		=link_to "Cancel", users_path, class: "btn btn-secondary"
+		=link_to "edit", edit_user_path, class: "btn btn-primary"
+		=link_to 'Delete', user_path(@user), method: :delete, class: "btn btn-danger"

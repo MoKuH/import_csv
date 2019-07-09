@@ -1,0 +1,8 @@
+-content_for :page_title , "New users"
+.row
+	.col-12
+		=simple_form_for(@user) do |f|
+			= f.input :file_csv, as: :file, required: true, input_html: {accept: '.csv'}
+			.btn-container
+				=link_to "Cancel", users_path, class: "btn btn-secondary"
+				= f.submit "Upload", class: "btn btn-primary"
