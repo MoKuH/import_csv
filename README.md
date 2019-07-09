@@ -1,32 +1,35 @@
-# README
+## Description
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+[![Build Status](https://travis-ci.org/MoKuH/import_csv.png)](https://travis-ci.org/MoKuH/import_csv)
+[![Code Climate](https://codeclimate.com/github/MoKuH/import_csv/badges/gpa.svg)](https://codeclimate.com/github/MoKuH/import_csv)
+[![Test Coverage](https://codeclimate.com/github/MoKuH/import_csv/coverage.svg)](https://codeclimate.com/github/MoKuH/import_csv/coverage)
 
-* Ruby version
+This is a simple project importing csv file of users
+It also allow user view/edit and destroy
+It uses simple_form and bootstraps
 
-* System dependencies
 
-* Configuration
+## Requirements
 
-* Database creation
+This project currently works with:
 
-* Database initialization
+* Rails 5.2.x
+* PostgreSQL
+* ruby-2.6.2
 
-* How to run the test suite
+## Installation
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+```
+cp config/database.example.yml config/database.yml #then adapt your postgres username/password
+bundle install
+rake db:create
+rake db:migrate
+```
 
-* ...
-![Coverage](https://marcgrimme.github.io/simplecov-small-badge/badges/coverage_badge_total.png)
-# Ruby Travis Example
-[![Build Status](https://travis-ci.org/SelenaSmall/ruby-travis-example.png)](https://travis-ci.org/SelenaSmall/ruby-travis-example)
-#Code climate
-[![Code Climate](https://codeclimate.com/github/SelenaSmall/ruby_travis/badges/gpa.svg)](https://codeclimate.com/github/SelenaSmall/ruby_travis)
+## Demo
+[https://import-users.jbbernard.com](https://import-users.jbbernard.com)
 
-#Test coverage
-[![Test Coverage](https://codeclimate.com/github/SelenaSmall/ruby_travis/coverage.svg)](https://codeclimate.com/github/SelenaSmall/ruby_travis/coverage)
+Imported data are limited to 200 rows 
+

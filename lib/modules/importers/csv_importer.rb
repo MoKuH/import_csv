@@ -7,15 +7,15 @@ module Importers
 			not_imported = []
 			CSV.foreach(file.path, headers: true) do |row|
 				i+=1
-				unless class_name.create(row.to_hash).persisted?
-					#add not imported object in a list, in case we would like to see model errors
-					not_imported << class_name.new(row.to_hash).valid?
-				end
+				data = row.to_hash.reject{|a|!User::PERMIT_ATTRIBUTES.include? a.to_sym}
+				entry = class_name.new(data)
+				#THIS IS A HACK TO PROTECT PUBLIC SERVER
+				User.destroy_all if Rails.env.production? && class_name.count>200
+				#add not imported object in a list, in case we would like to see model errors
+				not_imported << entry unless entry.save
 			end
 			Importer::Result.new not_imported, i
 		end
-
-
 
 		def self.generate data
 			CSV.generate(headers: true) do |csv|

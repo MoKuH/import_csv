@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
       expect(user.valid?).to_not be(true)
     end
     it 'error code should be 6' do
-      expect(user.errors.size).to eq(6)
+      expect(user.errors.size).to eq(7)
     end
   end
 end

@@ -3,6 +3,8 @@
 	.col-auto
 		=link_to "Insert bulk users",new_user_path, class: 'btn btn-primary ml-auto'
 		=link_to "Download csv",users_path(format: :csv), class: 'btn btn-primary ml-auto'
+		=link_to "Clear database",destroy_path,method: :delete, class: 'btn btn-danger ml-auto'
+
 .row
 	.col-12
 		%table#user_list.table.table-hover

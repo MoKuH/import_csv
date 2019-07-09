@@ -2,18 +2,6 @@ class UsersController < ApplicationController
 
 	before_action :set_user, only:[:show,:destroy,:update,:edit]
 
-	#handle exception raise rails strong parameter if the front validation is not working
-	rescue_from ActionController::ParameterMissing do |e|
-		flash[:error]="some mandatory parameters are missing"
-		redirect_to root_path
-	end
-
-	#handle exception raise by the importer module
-	rescue_from Importer::InvalidFormat do |e|
-		flash[:error]=e.message
-		redirect_to new_user_path
-	end
-
 	#GET - index method, return html with all users, or a file
 	def index
 		@users= User.all
@@ -50,12 +38,17 @@ class UsersController < ApplicationController
 	def create
 		result = Importer.import(User,users_import_params)
 		if result.success?
-			redirect_to users_path, flash: {success: "Users imported successfully"}
+			flash[:success] = "Users imported successfully"
 		else
 			flash[:error] = "error during users import, #{result.total_failed}/#{result.total_entries} user(s) not imported"
-			redirect_to users_path
 		end
-
+	#handle exception raise by the importer module
+	rescue CSV::MalformedCSVError => e
+		flash[:error]="Your csv file is invalid. Encoding may be wrong"
+	rescue Importer::InvalidFormat => e
+		flash[:error]=e.message
+	ensure
+		redirect_to users_path
 	end
 
 	#PATCH users/:id, update method , update the user with the authorized params
@@ -78,11 +71,11 @@ class UsersController < ApplicationController
 
 	#strong parameters for update method
 	def users_params
-		params.require(:user).permit(:name,:number,:date,:description)
+		params.require(:user).permit(User::PERMIT_ATTRIBUTES)
 	end
 
 	#strong parameters for create method
 	def users_import_params
-		params.require(:user).require(:file_csv)
+		params.require(:user).require(:file)
 	end
 end
