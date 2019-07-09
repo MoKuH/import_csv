@@ -1,4 +1,6 @@
 deploy:
+  edge:
+    branch: v2.0.0
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
