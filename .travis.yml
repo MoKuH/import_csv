@@ -6,7 +6,6 @@ deploy:
   on:
     branch: master
 script:
-- gem install bundler:2.0.1
 - bundle install
 - bundle exec rake db:create
 - bundle exec rake db:migrate
@@ -21,6 +20,7 @@ addons:
 services:
 - postgresql
 before_script:
+- gem install bundler:2.0.1
 - cp config/database.yml.travis config/database.yml
 after_success:
 - bundle exec codeclimate-test-reporter
