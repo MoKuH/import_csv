@@ -6,6 +6,7 @@ deploy:
   on:
     branch: master
 script:
+- gem install bundler:2.0.1
 - bundle install
 - bundle exec rake db:create
 - bundle exec rake db:migrate
