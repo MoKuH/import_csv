@@ -11,12 +11,16 @@ deploy:
     — bundle exec rake db:create
     — bundle exec rake db:migrate
     — bundle exec rspec
+
 language: ruby
 rvm:
   — 2.6.2
 addons:
   code_climate:
     repo_token: c2c740523a0db98fac30576314e1cf53e66e9a9811dfa74ddb41090a5b9a5480
-# regular test configuration
+services:
+  - postgresql
+before_script:
+  - cp config/database.yml.travis config/database.yml
 after_success:
   - bundle exec codeclimate-test-reporter
