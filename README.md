@@ -26,6 +26,7 @@ cp config/database.example.yml config/database.yml #then adapt your postgres use
 bundle install
 rake db:create
 rake db:migrate
+rails s
 ```
 ## Features
 
