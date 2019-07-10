@@ -27,6 +27,16 @@ bundle install
 rake db:create
 rake db:migrate
 ```
+## Features
+
+- Import users' csv file
+- See all users with pagination
+- Show user
+- Edit user
+- Delete user
+- Clear users
+- Search user by name
+- Sort user by attribute
 
 ## Demo
 [https://import-users.jbbernard.com](https://import-users.jbbernard.com)
@@ -34,6 +44,7 @@ rake db:migrate
 Imported data are limited to 200 rows 
 
 ## Test
+To run tests:
 ```
 rspec
 ```
